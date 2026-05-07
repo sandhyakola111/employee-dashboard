@@ -1,0 +1,66 @@
+/* Page center layout */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  font-family: Arial, sans-serif;
+}
+
+/* Card style */
+.card {
+  width: 350px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+/* Title */
+.card h2 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+/* Info section */
+.info {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.info p {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #444;
+}
+
+.info span {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Loading style */
+.loading {
+  font-size: 16px;
+  color: #555;
+  padding: 15px 25px;
+  background: #f3f6ff;
+  border-radius: 8px;
+  border: 1px solid #d6e0ff;
+}
+
+/* Error style */
+.error {
+  font-size: 14px;
+  color: #fff;
+  background: #e74c3c;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(231,76,60,0.3);
+}

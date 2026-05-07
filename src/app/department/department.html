@@ -1,0 +1,14 @@
+<p>department works!</p>
+<h2>{{ departmentName }} Department</h2>
+
+<div *ngIf="employees.length; else noData">
+  <ul>
+    <li *ngFor="let emp of employees">
+      {{ emp.name }} - {{ emp.performance }}%
+    </li>
+  </ul>
+</div>
+
+<ng-template #noData>
+  <p>No employees found.</p>
+</ng-template>

@@ -1,0 +1,115 @@
+<mat-toolbar color="primary" class="toolbar">
+  Employee Performance Dashboard
+</mat-toolbar>
+
+<div class="dashboard-container">
+
+  <!-- ERROR -->
+  <div *ngIf="errorMsg" class="error-box">
+    {{ errorMsg }}
+    <button (click)="loadData()">Retry</button>
+  </div>
+
+  <!-- CARDS -->
+  <div class="card-container">
+    <div class="card">
+      <h3>Total Employees</h3>
+      <p>{{ totalEmployees }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Average Performance</h3>
+      <p>{{ avgPerformance | number:'1.0-0' }}%</p>
+    </div>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters">
+
+    <div class="filter-group">
+      <label>From</label>
+      <input type="date" (change)="onFromDate($event)">
+    </div>
+
+    <div class="filter-group">
+      <label>To</label>
+      <input type="date" (change)="onToDate($event)">
+    </div>
+
+    <div class="filter-group">
+      <input
+        type="text"
+        placeholder="Search employee..."
+        (input)="searchEmployee($any($event.target).value)" />
+    </div>
+
+    <div class="filter-group">
+      <select (change)="filterByDept($any($event.target).value)">
+        <option value="">All Departments</option>
+        <option value="IT">IT</option>
+        <option value="HR">HR</option>
+        <option value="Engineering">Engineering</option>
+      </select>
+    </div>
+
+    <button class="reset-btn" (click)="resetFilters()">
+      Reset
+    </button>
+
+  </div>
+
+  <!-- CHARTS (DUMB COMPONENT) -->
+  <app-dashboard-charts
+    [data]="dataSource.data">
+  </app-dashboard-charts>
+
+  <!-- TABLE -->
+  <div class="table-container">
+
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- NAME -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let e" (click)="openEmployee(e)" class="link">
+          {{ e.name }}
+        </td>
+      </ng-container>
+
+      <!-- DEPARTMENT -->
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Department</th>
+        <td mat-cell *matCellDef="let e">{{ e.department }}</td>
+      </ng-container>
+
+      <!-- PERFORMANCE -->
+      <ng-container matColumnDef="performance">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Performance</th>
+        <td mat-cell *matCellDef="let e">
+          <span class="badge">
+            {{ e.performance }}%
+            ({{ e.performance | performanceStatus }})
+          </span>
+        </td>
+      </ng-container>
+
+      <!-- DATE -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let e">{{ e.date }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <mat-paginator
+      [length]="totalCount"
+      [pageSize]="limit"
+      [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+
+  </div>
+
+</div>

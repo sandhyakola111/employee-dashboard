@@ -1,0 +1,20 @@
+<!-- Loading -->
+<div class="loading" *ngIf="loading()">
+  Loading employee details...
+</div>
+
+<!-- Error -->
+<div class="error" *ngIf="error()">
+  {{ error() }}
+</div>
+
+<!-- Data -->
+<div class="card" *ngIf="emp()">
+  <h2>{{ emp()?.name }}</h2>
+
+  <div class="info">
+    <p><span>Department:</span> {{ emp()?.department }}</p>
+    <p><span>Performance:</span> {{ emp()?.performance }}%</p>
+    <p><span>Date:</span> {{ emp()?.date }}</p>
+  </div>
+</div>
