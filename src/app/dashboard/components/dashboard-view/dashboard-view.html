@@ -1,0 +1,39 @@
+<mat-toolbar class="dashboard-header">
+  Employee Performance Dashboard
+</mat-toolbar>
+
+<div class="dashboard-container">
+
+  <!-- Filters -->
+  <app-dashboard-filters
+    (filtersChanged)="filterChange.emit($event)">
+  </app-dashboard-filters>
+
+  <!-- Metrics -->
+  <app-dashboard-metrics
+    [totalEmployees]="totalEmployees"
+    [avgPerformance]="avgPerformance">
+  </app-dashboard-metrics>
+
+  <!-- Charts -->
+  <app-dashboard-charts
+    [data]="employees">
+  </app-dashboard-charts>
+
+  <!-- Error -->
+  <div class="error-box" *ngIf="errorMsg">
+    {{ errorMsg }}
+  </div>
+
+  <!-- Table -->
+  <app-employee-table
+    [employees]="employees"
+    [totalCount]="totalCount"
+    [limit]="limit"
+
+    (pageChanged)="pageChange.emit($event)"
+    (sortChanged)="sortChange.emit($event)"
+    (employeeClicked)="employeeClick.emit($event)">
+  </app-employee-table>
+
+</div>

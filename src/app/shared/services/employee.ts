@@ -1,14 +1,25 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpResponse,
+  HttpParams
+} from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs';
+
 import { Employee } from '../models/employee.model';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class EmployeeService {
 
-  private baseUrl = "http://localhost:4000/employees"
+  private baseUrl = 'http://localhost:4000/employees';
 
   constructor(private http: HttpClient) {}
+
+  // ================= GET EMPLOYEES =================
 
   getEmployees(
     page: number,
@@ -21,22 +32,47 @@ export class EmployeeService {
     sortOrder: string
   ): Observable<HttpResponse<Employee[]>> {
 
-    let url = `${this.baseUrl}?_page=${page}&_limit=${limit}`;
+    let params = new HttpParams()
+      .set('_page', page)
+      .set('_limit', limit)
+      .set('_sort', sortField)
+      .set('_order', sortOrder);
 
-    if (search) url += `&q=${search}`;
-    if (dept) url += `&department=${dept}`;
-    if (fromDate) url += `&date_gte=${fromDate}`;
-    if (toDate) url += `&date_lte=${toDate}`;
+    // Search
+    if (search) {
+      params = params.set('q', search);
+    }
 
-    url += `&_sort=${sortField}&_order=${sortOrder}`;
+    // Department
+    if (dept) {
+      params = params.set('department', dept);
+    }
 
-    return this.http.get<Employee[]>(url, { observe: 'response' });
+    // From Date
+    if (fromDate) {
+      params = params.set('date_gte', fromDate);
+    }
+
+    // To Date
+    if (toDate) {
+      params = params.set('date_lte', toDate);
+    }
+
+    return this.http.get<Employee[]>(
+      this.baseUrl,
+      {
+        params,
+        observe: 'response'
+      }
+    );
   }
 
-// getEmployeeById(id: number) {
-//   return this.http.get<Employee>(`http://localhost:4000/employees/${id}`);
-// }
-getEmployeeById(id: number): Observable<Employee> {
-    return this.http.get<Employee>(`${this.baseUrl}/${id}`);
+  // ================= GET EMPLOYEE BY ID =================
+
+  getEmployeeById(id: number): Observable<Employee> {
+
+    return this.http.get<Employee>(
+      `${this.baseUrl}/${id}`
+    );
   }
 }

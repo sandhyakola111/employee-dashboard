@@ -1,0 +1,39 @@
+<div class="filters-container">
+
+  <!-- Search -->
+  <input
+    type="text"
+    placeholder="Search employee"
+    [(ngModel)]="filters.search"
+    (input)="emitFilters()">
+
+  <!-- Department -->
+  <select
+    [(ngModel)]="filters.dept"
+    (change)="emitFilters()">
+
+    <option value="">All Departments</option>
+    <option value="IT">IT</option>
+    <option value="HR">HR</option>
+    <option value="Finance">Finance</option>
+    <option value="Marketing">Marketing</option>
+  </select>
+
+  <!-- From Date -->
+  <input
+    type="date"
+    [(ngModel)]="filters.fromDate"
+    (change)="emitFilters()">
+
+  <!-- To Date -->
+  <input
+    type="date"
+    [(ngModel)]="filters.toDate"
+    (change)="emitFilters()">
+
+  <!-- Reset -->
+  <button (click)="reset()">
+    Reset
+  </button>
+
+</div>

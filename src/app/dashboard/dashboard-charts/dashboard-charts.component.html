@@ -1,22 +1,40 @@
-<div class="chart-grid">
+<div
+  class="charts-grid"
+  *ngIf="data.length">
+
+  <!-- BAR -->
 
   <div class="chart-card">
-    <h3>Employees per Department</h3>
+
+    <h3>Employees by Department</h3>
+
     <canvas #barCanvas></canvas>
   </div>
 
+  <!-- LINE -->
+
   <div class="chart-card">
+
     <h3>Performance Trend</h3>
+
     <canvas #lineCanvas></canvas>
   </div>
 
+  <!-- PIE -->
+
   <div class="chart-card">
+
     <h3>Department Distribution</h3>
+
     <canvas #pieCanvas></canvas>
   </div>
 
+  <!-- HEATMAP -->
+
   <div class="chart-card">
-    <h3>Performance Heatmap</h3>
+
+    <h3>Employee Performance</h3>
+
     <canvas #heatmapCanvas></canvas>
   </div>
 

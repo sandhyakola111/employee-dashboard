@@ -1,0 +1,42 @@
+.table-container {
+  margin-top: 25px;
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  font-weight: 600;
+  color: #333;
+}
+
+td,
+th {
+  padding: 14px;
+}
+
+tr.mat-row {
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+tr.mat-row:hover {
+  background: #f5f5f5;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+  font-size: 15px;
+}
+
+mat-paginator {
+  margin-top: 15px;
+}

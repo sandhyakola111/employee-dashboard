@@ -61,4 +61,8 @@ export class EmployeeDetailComponent {
       }
     });
   }
+  goBack(): void {
+
+  window.location.href = '/';
+}
 }

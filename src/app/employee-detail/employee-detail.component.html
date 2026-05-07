@@ -1,20 +1,33 @@
-<!-- Loading -->
-<div class="loading" *ngIf="loading()">
-  Loading employee details...
-</div>
+<div class="page-container">
 
-<!-- Error -->
-<div class="error" *ngIf="error()">
-  {{ error() }}
-</div>
-
-<!-- Data -->
-<div class="card" *ngIf="emp()">
-  <h2>{{ emp()?.name }}</h2>
-
-  <div class="info">
-    <p><span>Department:</span> {{ emp()?.department }}</p>
-    <p><span>Performance:</span> {{ emp()?.performance }}%</p>
-    <p><span>Date:</span> {{ emp()?.date }}</p>
+  <!-- BACK BUTTON -->
+  <div class="back-container">
+    <button class="back-btn" (click)="goBack()">
+      ← Back to Dashboard
+    </button>
   </div>
+  <!-- EMPLOYEE DETAILS -->
+  <div class="detail-card" *ngIf="emp">
+
+    <h2 class="name">{{ emp()?.name }}</h2>
+
+    <div class="info-row">
+      <span class="label">Department:</span>
+      <span class="value">{{ emp()?.department }}</span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Performance:</span>
+      <span class="value">
+        {{ emp()?.performance }}%
+      </span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Date:</span>
+      <span class="value">{{ emp()?.date }}</span>
+    </div>
+
+  </div>
+
 </div>

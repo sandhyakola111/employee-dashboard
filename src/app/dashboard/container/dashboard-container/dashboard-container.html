@@ -1,0 +1,13 @@
+<app-dashboard-view
+  [employees]="employees"
+  [totalEmployees]="totalEmployees"
+  [avgPerformance]="avgPerformance"
+  [totalCount]="totalCount"
+  [limit]="limit"
+  [errorMsg]="errorMsg"
+
+  (filterChange)="onFilterChange($event)"
+  (pageChange)="onPageChange($event)"
+  (sortChange)="onSortChange($event)"
+  (employeeClick)="openEmployee($event)">
+</app-dashboard-view>

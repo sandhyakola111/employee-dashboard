@@ -5,8 +5,8 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./dashboard/dashboard.component')
-        .then(m => m.DashboardComponent)
+      import('./dashboard/container/dashboard-container/dashboard-container')
+        .then(m => m.DashboardContainerComponent)
   },
 
   {
